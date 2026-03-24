@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Farms | Your Personal Organic Farm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        earth: {
+                            50: '#f9f7f4',
+                            100: '#f0ebe3',
+                            200: '#e0d4c4',
+                            300: '#cbb69f',
+                            400: '#b59478',
+                            500: '#a37b5a',
+                            600: '#8b6348',
+                            700: '#73503b',
+                            800: '#5f4435',
+                            900: '#4d382d',
+                        },
+                        leaf: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'sway': 'sway 4s ease-in-out infinite',
+                        'grow': 'grow 0.6s ease-out forwards',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        grow: {
+                            '0%': { transform: 'scale(0)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        html::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        html {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Ensure body can still scroll */
+        body {
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .clip-path-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        .grain-overlay {
+            position: relative;
+        }
+        .grain-overlay::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans text-earth-800 bg-earth-50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-leaf text-leaf-600 text-2xl animate-sway"></i>
+                <span class="font-serif text-2xl font-bold text-white tracking-wide">Agro Farms</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#concept" class="text-white/90 hover:text-white transition-colors font-medium">The Concept</a>
+                <a href="#farming" class="text-white/90 hover:text-white transition-colors font-medium">Your Farm</a>
+                <a href="#experience" class="text-white/90 hover:text-white transition-colors font-medium">Experience</a>
+                <a href="#guesthouse" class="text-white/90 hover:text-white transition-colors font-medium">Stay</a>
+                <a href="#app" class="bg-leaf-500 hover:bg-leaf-600 text-white px-6 py-2 rounded-full transition-all transform hover:scale-105 font-medium shadow-lg">
+                    Get the App
+                </a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-dark py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#concept" class="text-white/90 hover:text-white">The Concept</a>
+                <a href="#farming" class="text-white/90 hover:text-white">Your Farm</a>
+                <a href="#experience" class="text-white/90 hover:text-white">Experience</a>
+                <a href="#guesthouse" class="text-white/90 hover:text-white">Stay</a>
+                <a href="#app" class="text-leaf-400 font-semibold">Get the App →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80" alt="Lush green farmland" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-earth-900/90"></div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+            <div class="absolute top-20 left-10 w-32 h-32 bg-leaf-500/20 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-40 right-20 w-48 h-48 bg-earth-400/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-20 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-6 inline-block">
+                <span class="px-4 py-2 rounded-full glass text-white/90 text-sm font-medium tracking-wider uppercase border border-white/20">
+                    Reconnect with Nature
+                </span>
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight text-shadow animate-fade-up">
+                Own Your Farm.<br>
+                <span class="text-leaf-400 italic">We Grow It.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto font-light leading-relaxed animate-fade-up" style="animation-delay: 0.2s;">
+                Invest in organic land. Choose your crops and livestock. Experience farm-to-table living while we handle the work.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style="animation-delay: 0.4s;">
+                <a href="#farming" class="bg-leaf-500 hover:bg-leaf-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-2xl hover:shadow-leaf-500/50 flex items-center gap-2">
+                    <span>Start Your Farm</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#concept" class="glass text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all flex items-center gap-2">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Watch How It Works</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section id="concept" class="py-24 bg-earth-50 grain-overlay relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mb-6 leading-tight">
+                        Tired of Processed Foods?<br>
+                        <span class="text-leaf-700">Grow Your Own Solution.</span>
+                    </h2>
+                    <p class="text-lg text-earth-700 mb-6 leading-relaxed">
+                        Modern grocery stores are filled with preservatives, pesticides, and processed ingredients. The path to truly organic food seems impossible for busy urban dwellers.
+                    </p>
+                    <p class="text-lg text-earth-700 mb-8 leading-relaxed font-medium">
+                        Until now. We bridge the gap between your desire for healthy living and the reality of farm management.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-leaf-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-seedling text-leaf-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-earth-900 mb-1">100% Organic Guarantee</h3>
+                                <p class="text-earth-600 text-sm">No pesticides, no chemicals, just pure nature.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                            <div class="w-12 h-12 bg-earth-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-hand-holding-heart text-earth-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-earth-900 mb-1">Zero Effort Required</h3>
+                                <p class="text-earth-600 text-sm">We plant, nurture, harvest, and deliver to you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80" alt="Organic vegetables" class="w-full h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <div class="glass-dark text-white p-6 rounded-2xl">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="flex -space-x-2">
+                                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?img=1" alt="User">
+                                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?img=2" alt="User">
+                                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?img=3" alt="User">
+                                    </div>
+                                    <span class="text-sm font-medium">500+ Farm Owners</span>
+                                </div>
+                                <p class="text-sm text-white/80">"Finally, food I can trust for my family"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -z-10 -top-10 -right-10 w-64 h-64 bg-leaf-200 rounded-full opacity-50 blur-3xl"></div>
+                    <div class="absolute -z-10 -bottom-10 -left-10 w-48 h-48 bg-earth-200 rounded-full opacity-50 blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farming Options Grid -->
+    <section id="farming" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="text-leaf-600 font-semibold tracking-wider uppercase text-sm">Choose Your Path</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mt-3 mb-4">What Will You Grow?</h2>
+                <p class="text-earth-600 max-w-2xl mx-auto text-lg">From vegetables to livestock, select the perfect combination for your organic farm.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Crops -->
+                <div class="group relative overflow-hidden rounded-3xl shadow-lg hover-lift reveal cursor-pointer" onclick="selectOption('crops')">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600&q=80" alt="Organic crops" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="relative h-96 p-6 flex flex-col justify-end text-white">
+                        <div class="mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <div class="w-14 h-14 bg-leaf-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-carrot text-2xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold mb-2">Organic Crops</h3>
+                            <p class="text-white/80 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Vegetables, fruits, herbs, and grains grown with traditional methods.</p>
+                            <div class="flex items-center gap-2 text-leaf-400 font-semibold text-sm">
+                                <span>Select Crops</span>
+                                <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Livestock - Updated with Goat Image -->
+                <div class="group relative overflow-hidden rounded-3xl shadow-lg hover-lift reveal cursor-pointer" onclick="selectOption('livestock')" style="transition-delay: 0.1s;">
+                    <div class="absolute inset-0">
+                        <img src="https://kimi-web-img.moonshot.cn/img/cdn.shopify.com/79bbc0ec0fdb44dd2c13e0e5895985f7066c4995.jpg" alt="Goats grazing on organic farm" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="relative h-96 p-6 flex flex-col justify-end text-white">
+                        <div class="mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <div class="w-14 h-14 bg-earth-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-cow text-2xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold mb-2">Livestock</h3>
+                            <p class="text-white/80 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Ethically raised goats, sheep, and cows for dairy and meat.</p>
+                            <div class="flex items-center gap-2 text-earth-300 font-semibold text-sm">
+                                <span>Choose Animals</span>
+                                <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aquaculture -->
+                <div class="group relative overflow-hidden rounded-3xl shadow-lg hover-lift reveal cursor-pointer" onclick="selectOption('fish')" style="transition-delay: 0.2s;">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=600&q=80" alt="Fish farming" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="relative h-96 p-6 flex flex-col justify-end text-white">
+                        <div class="mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <div class="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-fish text-2xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold mb-2">Fish Farming</h3>
+                            <p class="text-white/80 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Sustainable aquaculture systems for fresh organic fish.</p>
+                            <div class="flex items-center gap-2 text-blue-300 font-semibold text-sm">
+                                <span>Start Aquaculture</span>
+                                <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mixed -->
+                <div class="group relative overflow-hidden rounded-3xl shadow-lg hover-lift reveal cursor-pointer" onclick="selectOption('mixed')" style="transition-delay: 0.3s;">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=600&q=80" alt="Mixed farming" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="relative h-96 p-6 flex flex-col justify-end text-white">
+                        <div class="mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <div class="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                                <i class="fas fa-layer-group text-2xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold mb-2">Mixed Farm</h3>
+                            <p class="text-white/80 text-sm mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">The complete ecosystem: crops, animals, and fish together.</p>
+                            <div class="flex items-center gap-2 text-amber-300 font-semibold text-sm">
+                                <span>Build Ecosystem</span>
+                                <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selection Modal (Hidden by default) -->
+            <div id="selection-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+                <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+                <div class="relative bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+                    <button onclick="closeModal()" class="absolute top-4 right-4 text-earth-400 hover:text-earth-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-leaf-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-mobile-alt text-leaf-600 text-2xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-earth-900 mb-2">Continue in App</h3>
+                        <p class="text-earth-600 mb-6">To customize your farm selection and see available plots, please continue in our mobile application.</p>
+                        <a href="#app" onclick="closeModal()" class="block w-full bg-leaf-500 hover:bg-leaf-600 text-white py-3 rounded-xl font-semibold transition-colors">
+                            Download App
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-24 bg-earth-100 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mb-4">Simple Steps to Ownership</h2>
+                <p class="text-earth-600 text-lg">From selection to harvest, we handle everything.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-24 left-0 w-full h-0.5 bg-earth-300 -z-10"></div>
+
+                <!-- Step 1 -->
+                <div class="text-center reveal">
+                    <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center mx-auto mb-6 relative border-4 border-earth-100">
+                        <span class="font-serif text-3xl font-bold text-leaf-600">1</span>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-leaf-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check text-white text-xs"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Choose Plot</h3>
+                    <p class="text-earth-600 text-sm">Select your land size and location from our available organic farms.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="text-center reveal" style="transition-delay: 0.1s;">
+                    <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center mx-auto mb-6 relative border-4 border-earth-100">
+                        <span class="font-serif text-3xl font-bold text-leaf-600">2</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Customize</h3>
+                    <p class="text-earth-600 text-sm">Pick your crops, livestock, or fish. Design your dream farm.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center mx-auto mb-6 relative border-4 border-earth-100">
+                        <span class="font-serif text-3xl font-bold text-leaf-600">3</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">We Manage</h3>
+                    <p class="text-earth-600 text-sm">Our experts plant, care for, and harvest your produce daily.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center reveal" style="transition-delay: 0.3s;">
+                    <div class="w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center mx-auto mb-6 relative border-4 border-earth-100">
+                        <span class="font-serif text-3xl font-bold text-leaf-600">4</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Enjoy</h3>
+                    <p class="text-earth-600 text-sm">Receive fresh deliveries or visit to collect your organic bounty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guest House Experience -->
+    <section id="guesthouse" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 relative reveal">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=400&q=80" alt="Cabin interior" class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8">
+                        <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=400&q=80" alt="Farm view" class="rounded-2xl shadow-lg w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80" alt="Dining" class="rounded-2xl shadow-lg w-full h-64 object-cover col-span-2">
+                    </div>
+                    <div class="absolute -z-10 inset-0 bg-leaf-100 rounded-3xl transform rotate-3"></div>
+                </div>
+                
+                <div class="order-1 lg:order-2 reveal">
+                    <span class="text-leaf-600 font-semibold tracking-wider uppercase text-sm">The Experience</span>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mt-3 mb-6">Stay at Your Farm</h2>
+                    <p class="text-lg text-earth-700 mb-6 leading-relaxed">
+                        Visit your land whenever you wish. Our eco-friendly guest houses offer the perfect retreat from city life. Wake up to the sound of birds, walk through your crops, and collect fresh eggs for breakfast.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-home text-leaf-600"></i>
+                            <span class="text-earth-800">Luxury eco-cabins with farm views</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-utensils text-leaf-600"></i>
+                            <span class="text-earth-800">Farm-to-table restaurant on site</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-wifi text-leaf-600"></i>
+                            <span class="text-earth-800">Modern amenities in rustic settings</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-hiking text-leaf-600"></i>
+                            <span class="text-earth-800">Guided farm tours and workshops</span>
+                        </div>
+                    </div>
+
+                    <button onclick="document.getElementById('app').scrollIntoView({behavior: 'smooth'})" class="bg-earth-800 hover:bg-earth-900 text-white px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg">
+                        Book Your Stay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-earth-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80" alt="Background" class="w-full h-full object-cover">
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">Stories from Our Farmers</h2>
+                <p class="text-earth-200 text-lg">Join hundreds of families eating healthier today.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-dark p-8 rounded-3xl reveal hover-lift">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-100 mb-6 italic">"I haven't bought vegetables from the store in 8 months. Knowing exactly where my food comes from is priceless."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="User" class="w-12 h-12 rounded-full border-2 border-leaf-500">
+                        <div>
+                            <h4 class="font-semibold">Sarah Chen</h4>
+                            <p class="text-sm text-earth-400">Vegetable Farm Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark p-8 rounded-3xl reveal hover-lift" style="transition-delay: 0.1s;">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-100 mb-6 italic">"My kids love visiting the goats on weekends. It's become our family's way of reconnecting with nature."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=9" alt="User" class="w-12 h-12 rounded-full border-2 border-leaf-500">
+                        <div>
+                            <h4 class="font-semibold">Michael Torres</h4>
+                            <p class="text-sm text-earth-400">Mixed Farm Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-dark p-8 rounded-3xl reveal hover-lift" style="transition-delay: 0.2s;">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-earth-100 mb-6 italic">"The app makes it so easy to track my fish growth. Fresh trout delivered to my door every week!"</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="User" class="w-12 h-12 rounded-full border-2 border-leaf-500">
+                        <div>
+                            <h4 class="font-semibold">Emma Wilson</h4>
+                            <p class="text-sm text-earth-400">Aquaculture Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section id="app" class="py-24 bg-gradient-to-br from-leaf-50 to-earth-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-leaf-200 rounded-full opacity-30 blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-earth-200 rounded-full opacity-30 blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="inline-block px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold mb-6">Download Now</span>
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mb-6">Manage Your Farm From Your Phone</h2>
+                    <p class="text-lg text-earth-700 mb-8 leading-relaxed">
+                        Track your crops in real-time, schedule visits, receive harvest notifications, and manage deliveries. Your farm in your pocket.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-leaf-600">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-earth-900">Live Camera Feeds</h4>
+                                <p class="text-sm text-earth-600">Watch your farm grow 24/7</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-leaf-600">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-earth-900">Delivery Tracking</h4>
+                                <p class="text-sm text-earth-600">Fresh produce at your doorstep</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center text-leaf-600">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-earth-900">Visit Scheduling</h4>
+                                <p class="text-sm text-earth-600">Book your farm stays easily</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-earth-900 hover:bg-earth-800 text-white px-6 py-3 rounded-xl flex items-center gap-3 transition-transform hover:scale-105 shadow-lg">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs text-earth-300">Download on the</div>
+                                <div class="font-semibold">App Store</div>
+                            </div>
+                        </button>
+                        <button class="bg-earth-900 hover:bg-earth-800 text-white px-6 py-3 rounded-xl flex items-center gap-3 transition-transform hover:scale-105 shadow-lg">
+                            <i class="fab fa-google-play text-2xl"></i>
+                            <div class="text-left">
+                                <div class="text-xs text-earth-300">Get it on</div>
+                                <div class="font-semibold">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative reveal">
+                    <div class="relative mx-auto w-72 h-[600px] bg-earth-900 rounded-[3rem] border-8 border-earth-800 shadow-2xl overflow-hidden">
+                        <!-- Phone Screen Content -->
+                        <div class="absolute inset-0 bg-white overflow-hidden">
+                            <!-- App Header -->
+                            <div class="bg-leaf-600 p-6 pt-12 text-white">
+                                <div class="flex justify-between items-center mb-4">
+                                    <div>
+                                        <p class="text-xs opacity-80">Good Morning</p>
+                                        <h3 class="font-bold text-lg">Farmer Sarah</h3>
+                                    </div>
+                                    <img src="https://i.pravatar.cc/150?img=5" class="w-10 h-10 rounded-full border-2 border-white">
+                                </div>
+                                <div class="bg-white/20 rounded-xl p-3 backdrop-blur-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm">Farm Status</span>
+                                        <span class="text-xs bg-green-400 text-green-900 px-2 py-1 rounded-full">Active</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- App Content -->
+                            <div class="p-4 space-y-4">
+                                <div class="bg-earth-50 rounded-xl p-4">
+                                    <h4 class="font-semibold text-earth-900 mb-2">Today's Weather</h4>
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-sun text-yellow-500 text-2xl"></i>
+                                        <div>
+                                            <p class="text-2xl font-bold text-earth-900">24°C</p>
+                                            <p class="text-xs text-earth-600">Perfect for growing</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h4 class="font-semibold text-earth-900 px-2">Your Crops</h4>
+                                    <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                                        <div class="flex-shrink-0 w-24 bg-green-50 rounded-xl p-3 text-center">
+                                            <i class="fas fa-carrot text-orange-500 text-2xl mb-1"></i>
+                                            <p class="text-xs font-medium">Carrots</p>
+                                            <p class="text-[10px] text-green-600">Ready in 5 days</p>
+                                        </div>
+                                        <div class="flex-shrink-0 w-24 bg-green-50 rounded-xl p-3 text-center">
+                                            <i class="fas fa-leaf text-green-500 text-2xl mb-1"></i>
+                                            <p class="text-xs font-medium">Lettuce</p>
+                                            <p class="text-[10px] text-green-600">Ready tomorrow</p>
+                                        </div>
+                                        <div class="flex-shrink-0 w-24 bg-green-50 rounded-xl p-3 text-center">
+                                            <i class="fas fa-seedling text-leaf-600 text-2xl mb-1"></i>
+                                            <p class="text-xs font-medium">Tomatoes</p>
+                                            <p class="text-[10px] text-earth-500">Growing</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-earth-900 text-white rounded-xl p-4">
+                                    <h4 class="font-semibold mb-2">Next Delivery</h4>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <p class="text-xs opacity-80">Scheduled for</p>
+                                            <p class="font-bold">Tomorrow, 9:00 AM</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-box"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Notch -->
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-earth-800 rounded-b-2xl"></div>
+                    </div>
+                    
+                    <!-- Floating Notification -->
+                    <div class="absolute -right-4 top-20 bg-white p-4 rounded-2xl shadow-xl animate-float hidden md:block">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-earth-900">Harvest Complete!</p>
+                                <p class="text-xs text-earth-600">Your tomatoes are ready</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80" alt="Farm landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-earth-900/80"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="font-serif text-4xl md:text-6xl font-bold text-white mb-6">Start Your Organic Journey Today</h2>
+            <p class="text-xl text-earth-200 mb-10 max-w-2xl mx-auto">
+                Join the movement towards sustainable, healthy living. Your piece of nature is waiting.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#app" class="bg-leaf-500 hover:bg-leaf-600 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-2xl">
+                    Get Started Now
+                </a>
+                <a href="mailto:hello@agrofarms.com" class="glass text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-all">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-900 text-earth-300 py-12 border-t border-earth-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-leaf text-leaf-500 text-xl"></i>
+                        <span class="font-serif text-xl font-bold text-white">Agro Farms</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">Connecting people with the land, one farm at a time. Eat organic, live better.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#concept" class="hover:text-leaf-400 transition-colors">About Us</a></li>
+                        <li><a href="#farming" class="hover:text-leaf-400 transition-colors">Farming Options</a></li>
+                        <li><a href="#guesthouse" class="hover:text-leaf-400 transition-colors">Guest Houses</a></li>
+                        <li><a href="#app" class="hover:text-leaf-400 transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-envelope mr-2"></i> hello@agrofarms.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> 123 Farm Road, Valley View</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                    <p class="text-sm mb-4">Get farming tips and harvest updates.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-earth-800 border border-earth-700 rounded-l-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-leaf-500 text-white">
+                        <button class="bg-leaf-600 hover:bg-leaf-700 px-4 py-2 rounded-r-lg transition-colors">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-earth-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm">&copy; 2026 Agro Farms. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-earth-900/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-earth-900/95', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Modal functions
+        function selectOption(type) {
+            const modal = document.getElementById('selection-modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-1');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('selection-modal');
+            const modalContent = document.getElementById('modal-content');
+            modalContent.classList.remove('scale-100', 'opacity-1');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.parallax-bg');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
