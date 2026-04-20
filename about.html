@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Agro World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        earth: {
+                            50: '#f9f7f4',
+                            100: '#f0ebe3',
+                            200: '#e0d4c4',
+                            300: '#cbb69f',
+                            400: '#b59478',
+                            500: '#a37b5a',
+                            600: '#8b6348',
+                            700: '#73503b',
+                            800: '#5f4435',
+                            900: '#4d382d',
+                        },
+                        leaf: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-earth-800 bg-earth-50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 bg-earth-900/95 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                    <img src="/assets/logo.png" alt="Agro World Logo" class="logo-img h-[70px] w-[70px] object-contain">
+                </a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#concept" class="text-white/90 hover:text-white transition-colors font-medium">The Concept</a>
+                <a href="index.html#farming" class="text-white/90 hover:text-white transition-colors font-medium">Your Farm</a>
+                <a href="index.html#experience" class="text-white/90 hover:text-white transition-colors font-medium">Experience</a>
+                <a href="index.html#guesthouse" class="text-white/90 hover:text-white transition-colors font-medium">Stay</a>
+                <a href="index.html#app" class="bg-leaf-500 hover:bg-leaf-600 text-white px-6 py-2 rounded-full transition-all transform hover:scale-105 font-medium shadow-lg">Get the App</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-dark py-4 px-6">
+            <div class="flex flex-col space-y-4">
+                <a href="index.html#concept" class="text-white/90 hover:text-white">The Concept</a>
+                <a href="index.html#farming" class="text-white/90 hover:text-white">Your Farm</a>
+                <a href="index.html#experience" class="text-white/90 hover:text-white">Experience</a>
+                <a href="index.html#guesthouse" class="text-white/90 hover:text-white">Stay</a>
+                <a href="index.html#app" class="text-leaf-400 font-semibold">Get the App →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 bg-earth-900 overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80" alt="Farm background" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <h1 class="font-serif text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-up">About Agro World</h1>
+            <p class="text-xl text-earth-200 max-w-3xl mx-auto">Discover our story, our vision, and our commitment to revolutionizing agriculture in Pakistan.</p>
+        </div>
+    </section>
+
+    <!-- Vision Section (CEO Version) -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="max-w-4xl mx-auto text-center reveal">
+                <div class="inline-block mb-6">
+                    <span class="px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold tracking-wider">Our Vision</span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mb-8 leading-tight">
+                    To transform Pakistan into a greener, self-sustainable nation
+                </h2>
+                <p class="text-xl text-earth-700 leading-relaxed">
+                    By revolutionizing agriculture through smart farming, eco-friendly practices, and accessible land ownership opportunities for future generations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-20 bg-earth-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <span class="px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold tracking-wider">Our Mission</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mt-4 mb-6">Creating a Modern Agricultural Ecosystem</h2>
+                <p class="text-lg text-earth-700 max-w-3xl mx-auto">We empower investors and communities by building a sustainable, transparent, and profitable farming future.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mission Item 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
+                    <div class="w-14 h-14 bg-leaf-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-leaf-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-3">Innovative & Smart Farming</h3>
+                    <p class="text-earth-600 leading-relaxed">Promoting cutting-edge agricultural techniques that maximize yield while respecting nature.</p>
+                </div>
+
+                <!-- Mission Item 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
+                    <div class="w-14 h-14 bg-leaf-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-leaf-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-3">Secure & Profitable Investments</h3>
+                    <p class="text-earth-600 leading-relaxed">Providing transparent, secure, and rewarding investment opportunities in organic agriculture.</p>
+                </div>
+
+                <!-- Mission Item 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
+                    <div class="w-14 h-14 bg-leaf-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-utensils text-leaf-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-3">National Food Security</h3>
+                    <p class="text-earth-600 leading-relaxed">Contributing to Pakistan's food independence through sustainable and local production.</p>
+                </div>
+
+                <!-- Mission Item 4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
+                    <div class="w-14 h-14 bg-leaf-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-people-arrows text-leaf-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-3">Thriving Farm Communities</h3>
+                    <p class="text-earth-600 leading-relaxed">Developing well-managed farmland communities with professional support for every farmer.</p>
+                </div>
+
+                <!-- Mission Item 5 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
+                    <div class="w-14 h-14 bg-leaf-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-leaf text-leaf-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-3">Healthy & Organic Lifestyle</h3>
+                    <p class="text-earth-600 leading-relaxed">Encouraging environmentally responsible living through organic practices and mindful consumption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mb-4">Our Core Values</h2>
+                <p class="text-lg text-earth-600">The principles that guide everything we do.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center p-6 reveal">
+                    <div class="w-16 h-16 bg-earth-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-earth-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-earth-900 mb-2">Trust & Transparency</h3>
+                    <p class="text-sm text-earth-600">Open communication and honest practices with all our stakeholders.</p>
+                </div>
+                <div class="text-center p-6 reveal">
+                    <div class="w-16 h-16 bg-earth-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-seedling text-earth-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-earth-900 mb-2">Sustainability</h3>
+                    <p class="text-sm text-earth-600">Protecting our land and resources for future generations.</p>
+                </div>
+                <div class="text-center p-6 reveal">
+                    <div class="w-16 h-16 bg-earth-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-earth-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-earth-900 mb-2">Community First</h3>
+                    <p class="text-sm text-earth-600">Building strong, supportive farming communities across Pakistan.</p>
+                </div>
+                <div class="text-center p-6 reveal">
+                    <div class="w-16 h-16 bg-earth-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star-of-life text-earth-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-earth-900 mb-2">Quality & Purity</h3>
+                    <p class="text-sm text-earth-600">100% organic, chemical-free produce you can trust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-earth-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80" alt="Farm" class="w-full h-full object-cover">
+        </div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">Join the Movement</h2>
+            <p class="text-xl text-earth-200 mb-8">Be part of Pakistan's agricultural revolution. Own your piece of nature today.</p>
+            <a href="index.html#farming" class="inline-block bg-leaf-500 hover:bg-leaf-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-2xl">Start Your Farm Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-900 text-earth-300 py-12 border-t border-earth-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="assets/logo.png" alt="Agro World Logo" class="h-10 w-10">
+                        <span class="font-serif text-xl font-bold text-white">Agro World</span>
+                    </div>
+                    <p class="text-sm leading-relaxed">Connecting people with the land, one farm at a time. Eat organic, live better.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="hover:text-leaf-400 transition-colors">About Us</a></li>
+                        <li><a href="index.html#farming" class="hover:text-leaf-400 transition-colors">Farming Options</a></li>
+                        <li><a href="index.html#guesthouse" class="hover:text-leaf-400 transition-colors">Guest Houses</a></li>
+                        <li><a href="index.html#app" class="hover:text-leaf-400 transition-colors">Mobile App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-envelope mr-2"></i> agroworld.aw@gmail.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> +92 336 5128883</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Plaza no 22, DownTown Giga DHA Phase-2, Islamabad</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+                    <p class="text-sm mb-4">Get farming tips and harvest updates.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-earth-800 border border-earth-700 rounded-l-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-leaf-500 text-white">
+                        <button class="bg-leaf-600 hover:bg-leaf-700 px-4 py-2 rounded-r-lg transition-colors"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-earth-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm">&copy; 2026 Agro World. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/agroworld.farm/" class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61586704651894" class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+        }
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            });
+        }
+
+        // Reveal animation
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+
+</html>
