@@ -67,126 +67,203 @@
             border: 1px solid rgba(203, 182, 159, 0.38);
         }
 
+        /* ── Section headings ── */
         .legal-content h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #15803d;
+            margin-top: 2.25rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(203, 182, 159, 0.45);
         }
 
+        /* ── Body text ── */
         .legal-content p {
-            margin-bottom: 1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: #544234;
+            margin-bottom: 0.85rem;
         }
 
-        .legal-content .section {
-            margin-bottom: 1.75rem;
+        /* ── Lists ── */
+        .legal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
         }
 
-        .legal-content .subsection {
-            margin-bottom: 1rem;
-        }
-
-        .legal-content {
-            white-space: pre-wrap;
-            line-height: 1.9;
-            font-size: 1.015rem;
-            text-align: justify;
+        .legal-content ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.95rem;
+            line-height: 1.75;
             color: #544234;
         }
 
-        .legal-content::selection {
-            background: #bbf7d0;
-            color: #1f2937;
+        .legal-content ul li::before {
+            content: "";
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #16a34a;
+            margin-top: 0.55rem;
+        }
+
+        /* ── Labelled sub-items (a), b), …) ── */
+        .legal-content .sub-item {
+            display: flex;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #544234;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-content .sub-label {
+            flex-shrink: 0;
+            font-weight: 600;
+            color: #15803d;
+            min-width: 1.4rem;
+        }
+
+        /* ── Contact block ── */
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 1rem;
+            border-radius: 0.75rem;
+            background: rgba(240, 253, 244, 0.7);
+            border: 1px solid rgba(187, 247, 208, 0.6);
+            font-size: 0.9rem;
+            color: #3f4444;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-row i {
+            color: #16a34a;
+            font-size: 0.95rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        .contact-row a {
+            color: #15803d;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body class="font-sans text-earth-800 bg-earth-50 overflow-x-hidden selection:bg-leaf-200 selection:text-earth-900">
+
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 py-4 px-6 lg:px-12 bg-earth-900/95 backdrop-blur-md shadow-lg">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
                 <img src="/assets/logo.png" alt="Agro World Logo" class="h-[70px] w-[70px] object-contain">
             </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="index.html#concept" class="text-white/90 hover:text-white transition-colors font-medium">The
-                    Concept</a>
-                <a href="index.html#farming" class="text-white/90 hover:text-white transition-colors font-medium">Your
-                    Farm</a>
+                <a href="index.html#concept" class="text-white/90 hover:text-white transition-colors font-medium">The Concept</a>
+                <a href="index.html#farming" class="text-white/90 hover:text-white transition-colors font-medium">Your Farm</a>
                 <a href="about.html" class="text-white/90 hover:text-white transition-colors font-medium">About Us</a>
-                <a href="terms.html" class="text-white/90 hover:text-white transition-colors font-medium">Terms &
-                    Conditions</a>
+                <a href="terms.html" class="text-white/90 hover:text-white transition-colors font-medium">Terms &amp; Conditions</a>
             </div>
         </div>
     </nav>
 
     <main class="legal-shell pt-32 pb-24">
-        <section class="max-w-5xl mx-auto px-6 lg:px-12">
-            <div class="legal-card rounded-[2rem] p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <span
-                        class="inline-block px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold tracking-wider">Legal</span>
-                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-earth-900 mt-5">Privacy Policy</h1>
+        <section class="max-w-4xl mx-auto px-6 lg:px-12">
+            <div class="legal-card rounded-[2rem] p-8 md:p-14">
+
+                <!-- Page header -->
+                <div class="text-center mb-12">
+                    <span class="inline-block px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold tracking-wider">Legal</span>
+                    <h1 class="font-serif text-4xl md:text-6xl font-bold text-earth-900 mt-5 mb-3">Privacy Policy</h1>
                 </div>
 
-                <div class="legal-content text-earth-800">
-                    1. INTRODUCTION
-                    Welcome to Agro World. We are committed to protecting your personal information and your right to
-                    privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information
-                    when you use our mobile application. Please read this policy carefully to understand our practices
-                    regarding your personal data.
+                <!-- Content -->
+                <div class="legal-content">
 
-                    2. INFORMATION WE COLLECT
-                    We collect personal information that you voluntarily provide to us when registering on the app. This
-                    includes:
-                    • Personal Details: Name, email address, phone number, and mailing address.
-                    • Financial Data: Bank account details, payment history, and investment records necessary to process
-                    your transactions and profit distributions.
-                    • Device Data: Basic analytics such as IP address, device type, and operating system to improve app
-                    performance.
+                    <!-- 1. Introduction -->
+                    <h2>1. Introduction</h2>
+                    <p>Welcome to Agro World. We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application. Please read this policy carefully to understand our practices regarding your personal data.</p>
 
-                    3. HOW WE USE YOUR INFORMATION
-                    We use the information we collect or receive for the following purposes:
-                    • To facilitate account creation and secure login processes.
-                    • To process your investments, farm allotments, and profit payouts.
-                    • To send administrative information, security alerts, and updates regarding your investments.
-                    • To provide customer support and respond to your inquiries.
+                    <!-- 2. Information We Collect -->
+                    <h2>2. Information We Collect</h2>
+                    <p>We collect personal information that you voluntarily provide to us when registering on the app. This includes:</p>
+                    <div class="sub-item"><span class="sub-label">a)</span><span><strong>Personal Details:</strong> Name, email address, phone number, and mailing address.</span></div>
+                    <div class="sub-item"><span class="sub-label">b)</span><span><strong>Financial Data:</strong> Bank account details, payment history, and investment records necessary to process your transactions and profit distributions.</span></div>
+                    <div class="sub-item"><span class="sub-label">c)</span><span><strong>Device Data:</strong> Basic analytics such as IP address, device type, and operating system to improve app performance.</span></div>
 
-                    4. DATA SHARING AND DISCLOSURE
-                    We do not sell your personal data to third parties. We may share your information only in the
-                    following situations:
-                    • Service Providers: With trusted third-party vendors (such as payment gateways and SMS providers)
-                    who perform services for us.
-                    • Legal Obligations: When required by law, government requests, or court orders to protect our
-                    rights or comply with legal proceedings.
-                    • Business Transfers: In connection with any merger, sale of company assets, or acquisition of our
-                    business.
+                    <!-- 3. How We Use Your Information -->
+                    <h2>3. How We Use Your Information</h2>
+                    <p>We use the information we collect or receive for the following purposes:</p>
+                    <ul>
+                        <li>To facilitate account creation and secure login processes.</li>
+                        <li>To process your investments, farm allotments, and profit payouts.</li>
+                        <li>To send administrative information, security alerts, and updates regarding your investments.</li>
+                        <li>To provide customer support and respond to your inquiries.</li>
+                    </ul>
 
-                    5. DATA RETENTION & ACCOUNT DELETION
-                    • Data Retention: We keep your personal information for as long as it is necessary for the purposes
-                    set out in this Privacy Policy, unless a longer retention period is required by law (e.g., for tax
-                    or accounting requirements).
-                    • Account Deletion: You have the right to request the deletion of your account and personal data.
-                    You can do this directly within the app by navigating to Profile > Delete Account. Upon request, we
-                    will delete or anonymize your data, except for information we are legally required to retain.
+                    <!-- 4. Data Sharing -->
+                    <h2>4. Data Sharing and Disclosure</h2>
+                    <p>We do not sell your personal data to third parties. We may share your information only in the following situations:</p>
+                    <div class="sub-item"><span class="sub-label">a)</span><span><strong>Service Providers:</strong> With trusted third-party vendors (such as payment gateways and SMS providers) who perform services for us.</span></div>
+                    <div class="sub-item"><span class="sub-label">b)</span><span><strong>Legal Obligations:</strong> When required by law, government requests, or court orders to protect our rights or comply with legal proceedings.</span></div>
+                    <div class="sub-item"><span class="sub-label">c)</span><span><strong>Business Transfers:</strong> In connection with any merger, sale of company assets, or acquisition of our business.</span></div>
 
-                    6. DATA SECURITY
-                    We have implemented appropriate technical and organizational security measures designed to protect
-                    the security of any personal information we process. However, despite our safeguards, no electronic
-                    transmission over the Internet or information storage technology can be guaranteed to be 100%
-                    secure.
+                    <!-- 5. Data Retention -->
+                    <h2>5. Data Retention &amp; Account Deletion</h2>
+                    <div class="sub-item"><span class="sub-label">a)</span><span><strong>Data Retention:</strong> We keep your personal information for as long as it is necessary for the purposes set out in this Privacy Policy, unless a longer retention period is required by law (e.g., for tax or accounting requirements).</span></div>
+                    <div class="sub-item mt-2"><span class="sub-label">b)</span><span><strong>Account Deletion:</strong> You have the right to request the deletion of your account and personal data. You can do this directly within the app by navigating to <em>Profile &gt; Delete Account</em>. Upon request, we will delete or anonymize your data, except for information we are legally required to retain.</span></div>
 
-                    7. CONTACT US
-                    If you have questions or comments about this Privacy Policy, or wish to exercise your data rights,
-                    please contact us at:
+                    <!-- 6. Data Security -->
+                    <h2>6. Data Security</h2>
+                    <p>We have implemented appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure.</p>
 
-                    📞 0333 5128883
-                    📞 0336 5128883
-                    📞 0333 1116497 (Help 24/7)
-                    📧 info@agroworldpk.com
-                </div>
+                    <!-- 7. Contact Us -->
+                    <h2>7. Contact Us</h2>
+                    <p>If you have questions or comments about this Privacy Policy, or wish to exercise your data rights, please contact us at:</p>
+
+                    <!-- <div class="mt-4 space-y-2">
+                        <div class="contact-row">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+923335128883">0333 5128883</a>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+923365128883">0336 5128883</a>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-headset"></i>
+                            <span><a href="tel:+923331116497">0333 1116497</a> <span class="text-earth-400 text-xs ml-1">Help 24/7</span></span>
+                        </div>
+                        <div class="contact-row">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@agroworldpk.com">info@agroworldpk.com</a>
+                        </div>
+                    </div> -->
+
+                </div><!-- /legal-content -->
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-earth-900 text-earth-300 py-12 border-t border-earth-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
@@ -195,19 +272,15 @@
                         <img src="assets/logo.png" alt="Agro World Logo" class="h-10 w-10">
                         <span class="font-serif text-xl font-bold text-white">Agro World</span>
                     </div>
-                    <p class="text-sm leading-relaxed">Connecting people with the land, one farm at a time. Eat organic,
-                        live better.</p>
+                    <p class="text-sm leading-relaxed">Connecting people with the land, one farm at a time. Eat organic, live better.</p>
                 </div>
                 <div>
                     <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
                         <li><a href="about.html" class="hover:text-leaf-400 transition-colors">About Us</a></li>
-                        <li><a href="index.html#farming" class="hover:text-leaf-400 transition-colors">Farming
-                                Options</a></li>
-                        <li><a href="terms.html" class="hover:text-leaf-400 transition-colors">Terms and Conditions</a>
-                        </li>
-                        <li><a href="privacy-policy.html" class="hover:text-leaf-400 transition-colors">Privacy
-                                Policy</a></li>
+                        <li><a href="index.html#farming" class="hover:text-leaf-400 transition-colors">Farming Options</a></li>
+                        <li><a href="terms.html" class="hover:text-leaf-400 transition-colors">Terms and Conditions</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-leaf-400 transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
@@ -215,8 +288,7 @@
                     <ul class="space-y-2 text-sm">
                         <li><i class="fas fa-envelope mr-2"></i> agroworld.aw@gmail.com</li>
                         <li><i class="fas fa-phone mr-2"></i> +92 336 5128883</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> Plaza no 22, DownTown Giga DHA Phase-2, Islamabad
-                        </li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Plaza no 22, DownTown Giga DHA Phase-2, Islamabad</li>
                     </ul>
                 </div>
                 <div>
@@ -225,8 +297,7 @@
                     <div class="flex">
                         <input type="email" placeholder="Your email"
                             class="bg-earth-800 border border-earth-700 rounded-l-lg px-4 py-2 text-sm w-full focus:outline-none focus:border-leaf-500 text-white">
-                        <button class="bg-leaf-600 hover:bg-leaf-700 px-4 py-2 rounded-r-lg transition-colors"><i
-                                class="fas fa-arrow-right"></i></button>
+                        <button class="bg-leaf-600 hover:bg-leaf-700 px-4 py-2 rounded-r-lg transition-colors"><i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
@@ -234,15 +305,13 @@
                 <p class="text-sm">&copy; 2026 Agro World. All rights reserved.</p>
                 <div class="flex gap-4">
                     <a href="https://www.instagram.com/agroworld.farm/"
-                        class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i
-                            class="fab fa-instagram"></i></a>
+                        class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/profile.php?id=61586704651894"
-                        class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i
-                            class="fab fa-facebook-f"></i></a>
+                        class="w-10 h-10 rounded-full bg-earth-800 flex items-center justify-center hover:bg-leaf-600 transition-colors text-white"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>
     </footer>
-</body>
 
+</body>
 </html>
