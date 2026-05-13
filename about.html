@@ -109,16 +109,11 @@
             </div>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html#home" class="text-white/90 hover:text-white transition-colors font-medium">Home</a>
-                <a href="index.html#concept" class="text-white/90 hover:text-white transition-colors font-medium">The
-                    Concept</a>
-                <a href="index.html#farming" class="text-white/90 hover:text-white transition-colors font-medium">Your
-                    Farm</a>
+                <a href="index.html#concept" class="text-white/90 hover:text-white transition-colors font-medium">The Concept</a>
                 <a href="#plans" class="text-white/90 hover:text-white transition-colors font-medium">Plans</a>
-                <a href="index.html#guesthouse"
-                    class="text-white/90 hover:text-white transition-colors font-medium">Stay</a>
+                <a href="#contact" class="text-white/90 hover:text-white transition-colors font-medium">Contact Us</a>
                 <a href="index.html#app"
-                    class="bg-leaf-500 hover:bg-leaf-600 text-white px-6 py-2 rounded-full transition-all transform hover:scale-105 font-medium shadow-lg">Get
-                    the App</a>
+                    class="bg-leaf-500 hover:bg-leaf-600 text-white px-6 py-2 rounded-full transition-all transform hover:scale-105 font-medium shadow-lg">Get the App</a>
             </div>
             <button id="mobile-menu-btn" class="md:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
         </div>
@@ -594,6 +589,144 @@
 
         </div>
     </section>
+<!-- Contact / Schedule a Site Visit Section -->
+    <section id="contact" class="py-20 bg-earth-50">
+        <div class="max-w-5xl mx-auto px-6 lg:px-12">
+
+            <div class="text-center mb-12 reveal">
+                <span
+                    class="inline-block px-4 py-2 bg-leaf-100 text-leaf-700 rounded-full text-sm font-semibold tracking-wider">Get
+                    In Touch</span>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-earth-900 mt-4 mb-4">Let's Connect</h2>
+                <p class="text-earth-600 max-w-xl mx-auto">Connect with our experts for a free consultation and smart
+                    agro-investment guidance.</p>
+            </div>
+
+            <div
+                class="bg-white rounded-3xl overflow-hidden shadow-xl border border-earth-100 grid md:grid-cols-2 reveal">
+
+                <!-- Left: Form -->
+                <div class="p-8 md:p-10">
+                    <span
+                        class="inline-block px-3 py-1 bg-leaf-100 text-leaf-700 rounded-full text-xs font-semibold tracking-wider uppercase mb-5">Contact Us for more information</span>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">Your name *</label>
+                            <input id="cf-name" type="text" placeholder="Ali Hassan"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">Email address</label>
+                            <input id="cf-email" type="email" placeholder="ali@gmail.com"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">Phone number *</label>
+                            <input id="cf-phone" type="tel" placeholder="0300 123 4567"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">City</label>
+                            <input id="cf-city" type="text" placeholder="Islamabad"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">Plot size</label>
+                            <select id="cf-plot"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                                <option value="">Select plot size</option>
+                                <option>2 Kanal</option>
+                                <option>4 Kanal</option>
+                                <option>6 Kanal</option>
+                                <option>8 Kanal</option>
+                                <option>2 Acres (16 Kanal)</option>
+                                <option>3 Acres (24 Kanal)</option>
+                                <option>4 Acres (32 Kanal)</option>
+                                <option>5 Acres (40 Kanal)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-earth-500 mb-1">Payment plan</label>
+                            <select id="cf-plan"
+                                class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
+                                <option value="">Select plan</option>
+                                <option>Lumpsum</option>
+                                <option>2-Year Installment</option>
+                                <option>4-Year Installment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-xs text-earth-500 mb-1">Your message</label>
+                        <textarea id="cf-message" rows="3" placeholder="Any specific questions or preferred visit time…"
+                            class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900 resize-y font-sans"></textarea>
+                    </div>
+
+                    <!-- Error msg -->
+                    <p id="cf-error" class="hidden text-sm text-red-500 mb-3">Please fill in your name and phone number
+                        before submitting.</p>
+
+                    <button onclick="sendToWhatsApp()"
+                        class="bg-leaf-600 hover:bg-leaf-700 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        send message via WhatsApp
+                    </button>
+                    <p class="text-xs text-earth-400 mt-3">* Required fields. Clicking will open WhatsApp with your
+                        details pre-filled.</p>
+                </div>
+
+                <!-- Right: Info panel -->
+                <div class="bg-leaf-900 p-8 md:p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                            <i class="fas fa-seedling text-leaf-300 text-2xl"></i>
+                        </div>
+                        <p class="text-leaf-400 text-xs font-semibold tracking-widest uppercase mb-1">Agro World</p>
+                        <h3 class="text-white font-serif text-2xl font-bold mb-2 leading-tight">Own your piece<br>of
+                            nature</h3>
+                        <p class="text-white/60 text-sm leading-relaxed mb-6">Fill out the form and we'll reach out
+                            within one business day to confirm your visit.</p>
+
+                        <div class="space-y-3">
+                            <a href="https://wa.me/923365128883" target="_blank"
+                                class="flex items-center gap-3 p-3 bg-white/8 border border-white/10 rounded-xl hover:bg-white/15 transition-colors no-underline">
+                                <i class="fab fa-whatsapp text-leaf-400 text-lg w-5 text-center"></i>
+                                <div>
+                                    <p class="text-white/40 text-xs mb-0">WhatsApp</p>
+                                    <p class="text-white text-sm font-medium mb-0">+92 336 5128883</p>
+                                </div>
+                            </a>
+                            <a href="tel:+923335128883"
+                                class="flex items-center gap-3 p-3 bg-white/8 border border-white/10 rounded-xl hover:bg-white/15 transition-colors no-underline">
+                                <i class="fas fa-phone text-leaf-400 text-lg w-5 text-center"></i>
+                                <div>
+                                    <p class="text-white/40 text-xs mb-0">Phone</p>
+                                    <p class="text-white text-sm font-medium mb-0">+92 333 5128883</p>
+                                </div>
+                            </a>
+                            <a href="mailto:info@agroworldpk.com"
+                                class="flex items-center gap-3 p-3 bg-white/8 border border-white/10 rounded-xl hover:bg-white/15 transition-colors no-underline">
+                                <i class="fas fa-envelope text-leaf-400 text-lg w-5 text-center"></i>
+                                <div>
+                                    <p class="text-white/40 text-xs mb-0">Email</p>
+                                    <p class="text-white text-sm font-medium mb-0">info@agroworldpk.com</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-white/10 flex gap-3 items-start">
+                        <i class="fas fa-map-marker-alt text-white/30 mt-0.5 flex-shrink-0"></i>
+                        <p class="text-white/40 text-xs leading-relaxed mb-0">Plaza no 22, DownTown Giga<br>DHA Phase-2,
+                            Islamabad</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- CTA Section -->
     <section class="py-20 bg-earth-900 relative overflow-hidden">
@@ -713,6 +846,40 @@
         // Init on load
         document.addEventListener('DOMContentLoaded', () => showPlan('2yr-kanal'));
 
+        // Form submission to WhatsApp
+         function sendToWhatsApp() {
+            const name = document.getElementById('cf-name').value.trim();
+            const email = document.getElementById('cf-email').value.trim();
+            const phone = document.getElementById('cf-phone').value.trim();
+            const city = document.getElementById('cf-city').value.trim();
+            const plot = document.getElementById('cf-plot').value;
+            const plan = document.getElementById('cf-plan').value;
+            const message = document.getElementById('cf-message').value.trim();
+            const error = document.getElementById('cf-error');
+
+            // Validate required fields
+            if (!name || !phone) {
+                error.classList.remove('hidden');
+                return;
+            }
+            error.classList.add('hidden');
+
+            // Build the WhatsApp message
+            let text = `Hi Agro World! I'd like to own a farm. Here are my details:\n\n`;
+            text += `👤 Name: ${name}\n`;
+            if (phone) text += `📞 Phone: ${phone}\n`;
+            if (email) text += `📧 Email: ${email}\n`;
+            if (city) text += `🏙️ City: ${city}\n`;
+            if (plot) text += `🌾 Plot Size: ${plot}\n`;
+            if (plan) text += `💳 Payment Plan: ${plan}\n`;
+            if (message) text += `\n💬 Message: ${message}\n`;
+            text += `\nPlease guide me further. Thank you!`;
+
+            // Open WhatsApp
+            const whatsappNumber = '923365128883';
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
     </script>
 
     <!-- WhatsApp Floating Button -->
