@@ -174,40 +174,6 @@
             transition-delay: 0.65s;
         }
 
-        .coming-soon-badge {
-            position: relative;
-        }
-
-        .coming-soon-badge::after {
-            content: "Coming Soon";
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            color: white;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 20px;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
-            animation: pulse-badge 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-badge {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
         /* =============================================
            NAVBAR FIX — Mobile-First Responsive Navbar
            ============================================= */
@@ -1336,9 +1302,10 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="coming-soon-badge relative inline-block">
+                        <div class="relative inline-block cursor-pointer"
+                            onclick="window.open('https://apps.apple.com/us/app/agro-world-ventures/id6776594551', '_blank')">
                             <button
-                                class="bg-earth-900 hover:bg-earth-800 text-white px-6 py-3 rounded-xl flex items-center gap-3 transition-transform hover:scale-105 shadow-lg opacity-80 cursor-not-allowed">
+                                class="bg-earth-900 hover:bg-earth-800 text-white px-6 py-3 rounded-xl flex items-center gap-3 transition-transform hover:scale-105 shadow-lg pointer-events-none">
                                 <i class="fab fa-apple text-2xl"></i>
                                 <div class="text-left">
                                     <div class="text-xs text-earth-300">Download on the</div>
