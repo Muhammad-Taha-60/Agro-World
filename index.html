@@ -397,6 +397,25 @@
             color: #fff;
             box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35);
         }
+
+        /* Slim, theme-matched scrollbar for the payment plan tables */
+        .plan-table .overflow-x-auto::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .plan-table .overflow-x-auto::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .plan-table .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+        }
+
+        .plan-table .overflow-x-auto {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+        }
     </style>
 </head>
 
@@ -957,46 +976,60 @@
             <!-- Why Invest badges -->
             <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-12 reveal">
                 <div
-                    class="flex flex-col items-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
-                    <i class="fas fa-shield-alt text-leaf-400 text-2xl"></i>
+                    class="group flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:border-leaf-400/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-full bg-leaf-400/10 flex items-center justify-center group-hover:bg-leaf-400/20 transition-colors">
+                        <i class="fas fa-shield-alt text-leaf-400 text-lg"></i>
+                    </div>
                     <span class="text-white text-xs font-medium leading-tight">Secure Land Ownership</span>
                 </div>
                 <div
-                    class="flex flex-col items-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
-                    <i class="fas fa-chart-line text-amber-400 text-2xl"></i>
+                    class="group flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:border-amber-400/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-full bg-amber-400/10 flex items-center justify-center group-hover:bg-amber-400/20 transition-colors">
+                        <i class="fas fa-chart-line text-amber-400 text-lg"></i>
+                    </div>
                     <span class="text-white text-xs font-medium leading-tight">High Return on Investment</span>
                 </div>
                 <div
-                    class="flex flex-col items-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
-                    <i class="fas fa-map-marker-alt text-red-400 text-2xl"></i>
+                    class="group flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:border-red-400/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-full bg-red-400/10 flex items-center justify-center group-hover:bg-red-400/20 transition-colors">
+                        <i class="fas fa-map-marker-alt text-red-400 text-lg"></i>
+                    </div>
                     <span class="text-white text-xs font-medium leading-tight">Prime Location Near Ring Road</span>
                 </div>
                 <div
-                    class="flex flex-col items-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
-                    <i class="fas fa-leaf text-leaf-400 text-2xl"></i>
+                    class="group flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:border-leaf-400/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-full bg-leaf-400/10 flex items-center justify-center group-hover:bg-leaf-400/20 transition-colors">
+                        <i class="fas fa-leaf text-leaf-400 text-lg"></i>
+                    </div>
                     <span class="text-white text-xs font-medium leading-tight">Sustainable Agriculture</span>
                 </div>
                 <div
-                    class="col-span-2 md:col-span-1 flex flex-col items-center gap-2 bg-white/5 border border-white/10 rounded-2xl p-4 text-center hover:bg-white/10 transition-colors">
-                    <i class="fas fa-users text-blue-400 text-2xl"></i>
+                    class="group col-span-2 md:col-span-1 flex flex-col items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:border-blue-400/30 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-11 h-11 rounded-full bg-blue-400/10 flex items-center justify-center group-hover:bg-blue-400/20 transition-colors">
+                        <i class="fas fa-users text-blue-400 text-lg"></i>
+                    </div>
                     <span class="text-white text-xs font-medium leading-tight">Limited Plots Available</span>
                 </div>
             </div>
 
             <!-- Plan Toggle -->
-            <div class="flex justify-center mb-10 reveal">
-                <div class="inline-flex bg-white/10 border border-white/15 rounded-2xl p-1.5 gap-1">
-                    <button id="btn-2yr-kanal" onclick="showPlan('2yr-kanal')"
-                        class="plan-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all">
-                        2-Year · Kanals
+            <div class="flex justify-center mb-12 reveal">
+                <div
+                    class="inline-flex flex-wrap justify-center bg-white/5 border border-white/10 rounded-full p-1.5 gap-1 shadow-lg shadow-black/20 backdrop-blur-sm">
+                    <button id="btn-farmhouse" onclick="showPlan('farmhouse')"
+                        class="plan-btn flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 text-white/60 hover:text-white">
+                        <i class="fas fa-home text-xs"></i>
+                        <span>Premium Farmhouse</span>
                     </button>
-                    <button id="btn-4yr-kanal" onclick="showPlan('4yr-kanal')"
-                        class="plan-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all text-white/60 hover:text-white">
-                        4-Year · Kanals
+                    <button id="btn-farmland-kanal" onclick="showPlan('farmland-kanal')"
+                        class="plan-btn flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300">
+                        <i class="fas fa-ruler-combined text-xs"></i>
+                        <span>Farmland · Kanals</span>
                     </button>
-                    <button id="btn-4yr-acres" onclick="showPlan('4yr-acres')"
-                        class="plan-btn px-5 py-2.5 rounded-xl text-sm font-semibold transition-all text-white/60 hover:text-white">
-                        4-Year · Acres
+                    <button id="btn-farmland-acre" onclick="showPlan('farmland-acre')"
+                        class="plan-btn flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 text-white/60 hover:text-white">
+                        <i class="fas fa-mountain text-xs"></i>
+                        <span>Farmland · Acres</span>
                     </button>
                 </div>
             </div>
@@ -1004,227 +1037,349 @@
             <!-- Tables Container -->
             <div class="reveal">
 
-                <!-- 2-Year Plan · Kanals -->
-                <div id="plan-2yr-kanal" class="plan-table">
-                    <div class="mb-5 flex items-center gap-3">
-                        <div class="h-px flex-1 bg-white/10"></div>
-                        <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">2-Year Payment Plan
-                            — In Kanals</span>
-                        <div class="h-px flex-1 bg-white/10"></div>
+                <!-- Premium Farmhouse Land Payment Plan -->
+                <div id="plan-farmhouse" class="plan-table hidden">
+                    <div class="flex justify-center mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold tracking-widest uppercase">
+                            <i class="fas fa-star text-[10px]"></i>
+                            Premium Farmhouse Land Payment Plan
+                        </span>
                     </div>
-                    <div class="overflow-x-auto rounded-2xl border border-white/10">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="bg-leaf-700/80 text-white">
-                                    <th class="px-5 py-4 text-left font-semibold rounded-tl-2xl whitespace-nowrap">
-                                        <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (24 mo.)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold rounded-tr-2xl whitespace-nowrap">
-                                        <i class="fas fa-key mr-2 text-amber-300"></i>Possession
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">2 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">3,300,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">990,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">55,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">495,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">495,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">4 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">6,600,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">1,980,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">110,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">990,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">990,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">6 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">9,900,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">2,970,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">165,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">1,485,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">1,485,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">8 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">13,200,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">3,960,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">220,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">1,980,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">1,980,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-white/[0.04] border border-white/10 rounded-3xl p-2 sm:p-3 shadow-2xl shadow-black/30">
+                        <div class="overflow-x-auto rounded-2xl">
+                            <table class="w-full text-sm border-separate border-spacing-0">
+                                <thead>
+                                    <tr class="bg-gradient-to-r from-leaf-700 to-leaf-800 text-white">
+                                        <th class="px-5 py-4 text-left font-bold text-xs tracking-wide uppercase rounded-tl-2xl whitespace-nowrap">
+                                            <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (24 / 48 mo.)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase rounded-tr-2xl whitespace-nowrap">
+                                            <i class="fas fa-key mr-2 text-amber-300"></i>Possession (15%)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">4 Kanal</td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">12,400,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">3,720,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>206,667</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>103,333</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">1,860,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">1,860,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 bg-amber-400/5 hover:bg-amber-400/10 transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">6 Kanal
+                                            <span
+                                                class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wide align-middle">Popular</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">18,600,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">5,580,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>310,000</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>155,000</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">2,790,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">2,790,000</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <p class="text-earth-400 text-xs mt-3 text-center italic">
-                        <i class="fas fa-info-circle mr-1"></i>Prices are valid until the Ring Road is operational.
-                    </p>
+                    <div class="mt-4 flex items-center justify-center gap-2 text-earth-400 text-xs">
+                        <i class="fas fa-info-circle text-amber-400/70"></i>
+                        <span>Prices are valid until the Ring Road is operational.</span>
+                    </div>
                 </div>
 
-                <!-- 4-Year Plan · Kanals -->
-                <div id="plan-4yr-kanal" class="plan-table hidden">
-                    <div class="mb-5 flex items-center gap-3">
-                        <div class="h-px flex-1 bg-white/10"></div>
-                        <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">4-Year Payment Plan
-                            — In Kanals</span>
-                        <div class="h-px flex-1 bg-white/10"></div>
+                <!-- Farmland Payment Plan · Kanals -->
+                <div id="plan-farmland-kanal" class="plan-table">
+                    <div class="flex justify-center mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold tracking-widest uppercase">
+                            <i class="fas fa-ruler-combined text-[10px]"></i>
+                            Farmland Payment Plan — In Kanals
+                        </span>
                     </div>
-                    <div class="overflow-x-auto rounded-2xl border border-white/10">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="bg-leaf-700/80 text-white">
-                                    <th class="px-5 py-4 text-left font-semibold rounded-tl-2xl whitespace-nowrap">
-                                        <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (48 mo.)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold rounded-tr-2xl whitespace-nowrap">
-                                        <i class="fas fa-key mr-2 text-amber-300"></i>Possession
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">2 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">3,300,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">990,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">27,500</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">495,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">495,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">4 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">6,600,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">1,980,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">55,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">990,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">990,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">6 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">9,900,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">2,970,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">82,500</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">1,485,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">1,485,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">8 Kanal</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">13,200,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">3,960,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">110,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">1,980,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">1,980,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-white/[0.04] border border-white/10 rounded-3xl p-2 sm:p-3 shadow-2xl shadow-black/30">
+                        <div class="overflow-x-auto rounded-2xl">
+                            <table class="w-full text-sm border-separate border-spacing-0">
+                                <thead>
+                                    <tr class="bg-gradient-to-r from-leaf-700 to-leaf-800 text-white">
+                                        <th class="px-5 py-4 text-left font-bold text-xs tracking-wide uppercase rounded-tl-2xl whitespace-nowrap">
+                                            <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (24 / 48 mo.)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase rounded-tr-2xl whitespace-nowrap">
+                                            <i class="fas fa-key mr-2 text-amber-300"></i>Possession (15%)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">2 Kanal</td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">3,900,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">1,170,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>65,000</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>32,500</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">585,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">585,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 bg-amber-400/5 hover:bg-amber-400/10 transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">4 Kanal
+                                            <span
+                                                class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wide align-middle">Popular</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">7,800,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">2,340,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>130,000</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>65,000</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">1,170,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">1,170,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">6 Kanal</td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">11,700,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">3,510,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>195,000</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>97,500</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">1,755,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">1,755,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">8 Kanal</td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">15,600,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">4,680,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right">
+                                            <div class="flex flex-col items-end gap-1">
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">24mo</span>260,000</span>
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs"><span
+                                                        class="text-blue-400/60 font-normal">48mo</span>130,000</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">2,340,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">2,340,000</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <p class="text-earth-400 text-xs mt-3 text-center italic">
-                        <i class="fas fa-info-circle mr-1"></i>Prices are valid until the Ring Road is operational.
-                    </p>
+                    <div class="mt-4 flex items-center justify-center gap-2 text-earth-400 text-xs">
+                        <i class="fas fa-info-circle text-amber-400/70"></i>
+                        <span>Prices are valid until the Ring Road is operational.</span>
+                    </div>
                 </div>
 
-                <!-- 4-Year Plan · Acres -->
-                <div id="plan-4yr-acres" class="plan-table hidden">
-                    <div class="mb-5 flex items-center gap-3">
-                        <div class="h-px flex-1 bg-white/10"></div>
-                        <span class="text-amber-400 font-semibold text-sm tracking-wider uppercase">4-Year Payment Plan
-                            — In Acres</span>
-                        <div class="h-px flex-1 bg-white/10"></div>
+                <!-- Farmland Payment Plan · Acres -->
+                <div id="plan-farmland-acre" class="plan-table hidden">
+                    <div class="flex justify-center mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-bold tracking-widest uppercase">
+                            <i class="fas fa-mountain text-[10px]"></i>
+                            Farmland Payment Plan — In Acres
+                        </span>
                     </div>
-                    <div class="overflow-x-auto rounded-2xl border border-white/10">
-                        <table class="w-full text-sm">
-                            <thead>
-                                <tr class="bg-leaf-700/80 text-white">
-                                    <th class="px-5 py-4 text-left font-semibold rounded-tl-2xl whitespace-nowrap">
-                                        <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (48 mo.)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold whitespace-nowrap">
-                                        <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
-                                    </th>
-                                    <th class="px-5 py-4 text-right font-semibold rounded-tr-2xl whitespace-nowrap">
-                                        <i class="fas fa-key mr-2 text-amber-300"></i>Possession
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">2 Acres <span
-                                            class="text-earth-400 font-normal text-xs">(16 Kanal)</span></td>
-                                    <td class="px-5 py-4 text-right text-earth-200">23,600,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">7,080,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">196,600</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">3,540,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">3,540,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">3 Acres <span
-                                            class="text-earth-400 font-normal text-xs">(24 Kanal)</span></td>
-                                    <td class="px-5 py-4 text-right text-earth-200">35,400,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">10,620,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">295,000</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">5,310,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">5,310,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/5 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">4 Acres <span
-                                            class="text-earth-400 font-normal text-xs">(32 Kanal)</span></td>
-                                    <td class="px-5 py-4 text-right text-earth-200">47,200,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">14,160,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">393,300</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">7,080,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">7,080,000</td>
-                                </tr>
-                                <tr class="border-t border-white/8 bg-white/3 hover:bg-white/10 transition-colors">
-                                    <td class="px-5 py-4 text-white font-bold">5 Acres <span
-                                            class="text-earth-400 font-normal text-xs">(40 Kanal)</span></td>
-                                    <td class="px-5 py-4 text-right text-earth-200">59,000,000</td>
-                                    <td class="px-5 py-4 text-right text-amber-400 font-semibold">17,700,000</td>
-                                    <td class="px-5 py-4 text-right text-blue-300 font-semibold">491,600</td>
-                                    <td class="px-5 py-4 text-right text-earth-200">8,850,000</td>
-                                    <td class="px-5 py-4 text-right text-leaf-400 font-semibold">8,850,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-white/[0.04] border border-white/10 rounded-3xl p-2 sm:p-3 shadow-2xl shadow-black/30">
+                        <div class="overflow-x-auto rounded-2xl">
+                            <table class="w-full text-sm border-separate border-spacing-0">
+                                <thead>
+                                    <tr class="bg-gradient-to-r from-leaf-700 to-leaf-800 text-white">
+                                        <th class="px-5 py-4 text-left font-bold text-xs tracking-wide uppercase rounded-tl-2xl whitespace-nowrap">
+                                            <i class="fas fa-expand-arrows-alt mr-2 text-leaf-300"></i>Farm Size
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-tag mr-2 text-leaf-300"></i>Total Price (PKR)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-hand-holding-usd mr-2 text-amber-300"></i>Down Payment (30%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-calendar-alt mr-2 text-blue-300"></i>Monthly (24 mo.)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase whitespace-nowrap">
+                                            <i class="fas fa-gavel mr-2 text-pink-300"></i>Balloting (15%)
+                                        </th>
+                                        <th class="px-5 py-4 text-right font-bold text-xs tracking-wide uppercase rounded-tr-2xl whitespace-nowrap">
+                                            <i class="fas fa-key mr-2 text-amber-300"></i>Possession (15%)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">1 Acre <span
+                                                class="text-earth-400 font-normal text-xs">(8 Kanal)</span></td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">14,200,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">4,260,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs">236,667</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">2,130,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">2,130,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 bg-amber-400/5 hover:bg-amber-400/10 transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">2 Acres <span
+                                                class="text-earth-400 font-normal text-xs">(16 Kanal)</span>
+                                            <span
+                                                class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-[10px] font-bold uppercase tracking-wide align-middle">Popular</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">28,400,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">8,520,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs">473,333</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">4,260,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">4,260,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">3 Acres <span
+                                                class="text-earth-400 font-normal text-xs">(24 Kanal)</span></td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">42,600,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">12,780,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs">710,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">6,390,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">6,390,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">4 Acres <span
+                                                class="text-earth-400 font-normal text-xs">(32 Kanal)</span></td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">56,800,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">17,040,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs">946,667</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">8,520,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">8,520,000</span>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-t border-white/5 hover:bg-white/[0.06] transition-colors duration-200">
+                                        <td class="px-5 py-5 text-white font-bold">5 Acres <span
+                                                class="text-earth-400 font-normal text-xs">(40 Kanal)</span></td>
+                                        <td class="px-5 py-5 text-right text-white font-bold text-base">71,000,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-amber-400/10 text-amber-300 font-semibold text-xs">21,300,000</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-blue-400/10 text-blue-300 font-semibold text-xs">1,183,333</span>
+                                        </td>
+                                        <td class="px-5 py-5 text-right text-earth-300 text-xs">10,650,000</td>
+                                        <td class="px-5 py-5 text-right"><span
+                                                class="inline-flex px-3 py-1 rounded-full bg-leaf-400/10 text-leaf-300 font-semibold text-xs">10,650,000</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <p class="text-earth-400 text-xs mt-3 text-center italic">
-                        <i class="fas fa-info-circle mr-1"></i>Prices are valid until the Ring Road is operational.
-                    </p>
+                    <div class="mt-4 flex items-center justify-center gap-2 text-earth-400 text-xs">
+                        <i class="fas fa-info-circle text-amber-400/70"></i>
+                        <span>Prices are valid until the Ring Road is operational.</span>
+                    </div>
                 </div>
             </div>
 
@@ -1442,10 +1597,13 @@
                             <select id="cf-plot"
                                 class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
                                 <option value="">Select plot size</option>
-                                <option>2 Kanal</option>
-                                <option>4 Kanal</option>
-                                <option>6 Kanal</option>
-                                <option>8 Kanal</option>
+                                <option>4 Kanal (Premium Farmhouse)</option>
+                                <option>6 Kanal (Premium Farmhouse)</option>
+                                <option>2 Kanal (Farmland)</option>
+                                <option>4 Kanal (Farmland)</option>
+                                <option>6 Kanal (Farmland)</option>
+                                <option>8 Kanal (Farmland)</option>
+                                <option>1 Acre (8 Kanal)</option>
                                 <option>2 Acres (16 Kanal)</option>
                                 <option>3 Acres (24 Kanal)</option>
                                 <option>4 Acres (32 Kanal)</option>
@@ -1458,8 +1616,8 @@
                                 class="w-full text-sm px-3 py-2.5 rounded-lg border border-earth-200 bg-earth-50 focus:outline-none focus:border-leaf-500 text-earth-900">
                                 <option value="">Select plan</option>
                                 <option>Lumpsum</option>
-                                <option>2-Year Installment</option>
-                                <option>4-Year Installment</option>
+                                <option>2-Year Installment (24 Months)</option>
+                                <option>4-Year Installment (48 Months)</option>
                             </select>
                         </div>
                     </div>
@@ -1727,7 +1885,7 @@
             activeBtn.classList.remove('text-white/60');
         }
         // Init on load
-        document.addEventListener('DOMContentLoaded', () => showPlan('2yr-kanal'));
+        document.addEventListener('DOMContentLoaded', () => showPlan('farmland-kanal'));
 
         function sendToWhatsApp() {
             const name = document.getElementById('cf-name').value.trim();
